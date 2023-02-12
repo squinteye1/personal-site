@@ -34,6 +34,9 @@ import bolt from "../assets/bolt.png";
 import nb from "../assets/nb.png";
 import skype from "../assets/skype.png";
 import spotify from "../assets/spotify.png";
+import code from "../assets/codeicon.png";
+import code1 from "../assets/code.svg"
+import cyborg from "../assets/cyborg2.png"
 
 export default {
   email,
@@ -69,4 +72,7 @@ export default {
   nb,
   skype,
   spotify,
+  code,
+  code1,
+  cyborg,
 };

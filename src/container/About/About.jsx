@@ -21,19 +21,19 @@ const About = () => {
   return (
     <>
       <h2 className="head-text">
-        I Know that <span>Good Design</span> <br />
-        means <span>Good Business</span>
+        About <span>Me</span>
       </h2>
 
       <div className="app__profiles">
         {abouts.map((about, index) => (
-          <motion.div 
+          <motion.div
             whileInView={{ opacity: 1 }}
             whileHover={{ scale: 1.1 }}
-            transition={{ duration: 0.5, type: 'tween' }}
-            key={about.title + index} 
-            className="app__profile-item">
-             <img src={urlFor(about.imgUrl)} alt={about.title} /> 
+            transition={{ duration: 0.5, type: "tween" }}
+            key={about.title + index}
+            className="app__profile-item"
+          >
+            <img src={urlFor(about.imgUrl)} alt={about.title} />
             <h3 className="bold-text" style={{ marginTop: 20 }}>
               {about.title}
             </h3>

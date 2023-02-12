@@ -71,8 +71,28 @@
   }
 }
 
+.head-text-fordark {
+  font-size: 2.75rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--white-color);
+  text-transform: capitalize;
+
+  span {
+    color: var(--secondary-color);
+  }
+
+  @media screen and (min-width: 2000px) {
+    font-size: 4rem;
+  }
+
+  @media screen and (max-width: 450px) {
+    font-size: 2rem;
+  }
+}
+
 .p-text {
-  font-size: 0.8rem;
+  font-size: 1rem;
   text-align: left;
   color: var(--gray-color);
   line-height: 1.5;
@@ -153,6 +173,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+ /* position: fixed;
+  top: 40%;
+  right: 0; */
 
   padding: 1rem;
 
@@ -162,6 +185,7 @@
     border-radius: 50%;
     background-color: #cbcbcb;
     margin: 0.5rem;
+    
 
     transition: background-color 0.2s ease-in-out;
 

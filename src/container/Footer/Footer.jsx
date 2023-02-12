@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
-
-import { images } from '../../constants';
-import { AppWrap, MotionWrap } from '../../wrapper';
-import { client } from '../../client';
-import './Footer.scss';
+import React, { useState } from "react";
+import { images } from "../../constants";
+import { AppWrap, MotionWrap } from "../../wrapper";
+import { client } from "../../client";
+import "./Footer.scss";
 
 const Footer = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+   const [error, setError] = useState({
+     name: "",
+     email: "",
+     message: "",
+   });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -20,14 +29,49 @@ const Footer = () => {
   const handleSubmit = () => {
     setLoading(true);
 
+        let isError = false;
+        const errors = {
+          name: "",
+          email: "",
+          message: "",
+        };
+
+        if (!username) {
+          isError = true;
+          errors.name = "Name is required";
+        }
+
+        if (!email) {
+          isError = true;
+          errors.email = "Email is required";
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+          isError = true;
+          errors.email = "Email is invalid";
+        }
+
+        if (!message) {
+          isError = true;
+          errors.message = "Message is required";
+        }
+
+        setError(errors);
+
+        if (isError) {
+          setLoading(false);
+          return;
+        }
+
+        setLoading(true);
+
     const contact = {
-      _type: 'contact',
+      _type: "contact",
       name: formData.username,
       email: formData.email,
       message: formData.message,
     };
 
-    client.create(contact)
+    client
+      .create(contact)
       .then(() => {
         setLoading(false);
         setIsFormSubmitted(true);
@@ -39,20 +83,6 @@ const Footer = () => {
     <>
       <h2 className="head-text">Take a coffee & chat with me</h2>
 
-      <div className="app__footer-cards">
-        <div className="app__footer-card ">
-          <img src={images.email} alt="email" />
-          <a href="mailto:neil.d.mckay@gmail.com" className="p-text">
-            neil.d.mckay@gmail.com
-          </a>
-        </div>
-        <div className="app__footer-card">
-          <img src={images.mobile} alt="phone" />
-          <a href="tel:+44 7908 171427" className="p-text">
-            07908 171427
-          </a>
-        </div>
-      </div>
       {!isFormSubmitted ? (
         <div className="app__footer-form app__flex">
           <div className="app__flex">
@@ -65,6 +95,11 @@ const Footer = () => {
               onChange={handleChangeInput}
             />
           </div>
+          {error.name && (
+            <p className="error" style={{ color: "#ff6601" }}>
+              {error.name}
+            </p>
+          )}
           <div className="app__flex">
             <input
               className="p-text"
@@ -75,6 +110,11 @@ const Footer = () => {
               onChange={handleChangeInput}
             />
           </div>
+          {error.email && (
+            <p className="error" style={{ color: "#ff6601" }}>
+              {error.email}
+            </p>
+          )}
           <div>
             <textarea
               className="p-text"
@@ -84,6 +124,11 @@ const Footer = () => {
               onChange={handleChangeInput}
             />
           </div>
+          {error.message && (
+            <p className="error" style={{ color: "#ff6601" }}>
+              {error.message}
+            </p>
+          )}
           <button type="button" className="p-text" onClick={handleSubmit}>
             {!loading ? "Send Message" : "Sending..."}
           </button>
@@ -96,13 +141,10 @@ const Footer = () => {
     </>
   );
 };
-
-
+//export default Footer;
 
 export default AppWrap(
-  MotionWrap(Footer, 'app__footer'),
-  'contact',
-  'app__whitebg',
+  MotionWrap(Footer, "app__footer"),
+  "contact",
+  "app__whitebg"
 );
-
-//export default Footer

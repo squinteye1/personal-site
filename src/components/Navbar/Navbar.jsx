@@ -6,18 +6,27 @@ import "./Navbar.scss";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const [active, setActive] = useState("Home");
+
+  const handleActive = (item) => {
+    setActive(item)
+  }
 
   return (
     <nav className="app__navbar">
       <div className="app__navbar-logo">
-        <img src={images.logo} alt="logo" />
+        {/*<img src={images.logo} alt="logo" /> */}
+
+        <h1>&lt;Neil McKay&#47;&gt;</h1>
       </div>
       <ul className="app__navbar-links">
         {["home", "about", "work", "skills", "testimonial", "contact"].map(
           (item) => (
             <li key={`link-${item}`} className="app__flex p-text">
               <div />
-              <a href={`#${item}`}>{item}</a>
+              <a href={`#${item}`} onClick={() => handleActive(item)}>
+                {item === "testimonial" ? "Certificates" : item}
+              </a>
             </li>
           )
         )}
@@ -41,7 +50,7 @@ const Navbar = () => {
               ].map((item) => (
                 <li key={item}>
                   <a href={`#${item}`} onClick={() => setToggle(false)}>
-                    {item}
+                    {item === "testimonial" ? "Certificates" : item}
                   </a>
                 </li>
               ))}

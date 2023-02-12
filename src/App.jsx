@@ -1,14 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { About, Footer, Header, Skills, Testimonial, Work } from "./container";
 import { Navbar } from "./components";
 import './App.scss'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   return (
     <div className="app">
 
-      <Navbar />
+      <Navbar  />
       <Header />
       <About />
       <Work />
