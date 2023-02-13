@@ -30,15 +30,14 @@ const Testimonial = () => {
 
   return (
     <>
-      <h2 className="head-text">Certificates</h2>
+      <h2 className="head-text-fordark">Certificates</h2>
       {testimonials.length && (
         <>
           <div className="app__testimonial-item app__flex">
-            {/*  
             <img
               src={urlFor(testimonials[currentIndex].imgurl)}
               alt={testimonials[currentIndex].name}
-            />*/}
+            />
             <div className="app__testimonial-content">
               <p className="p-text">{testimonials[currentIndex].feedback}</p>
               <div>
@@ -47,7 +46,7 @@ const Testimonial = () => {
               </div>
             </div>
           </div>
-
+        {/*
           <div className="app__testimonial-btns app__flex">
             <div
               className="app__flex"
@@ -75,6 +74,7 @@ const Testimonial = () => {
               <HiChevronRight />
             </div>
           </div>
+          */}
         </>
       )}
 
